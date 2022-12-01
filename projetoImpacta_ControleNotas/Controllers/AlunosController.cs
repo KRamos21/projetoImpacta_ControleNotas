@@ -54,8 +54,21 @@ namespace projetoImpacta_ControleNotas.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Nome,Nota1,Nota2")] AlunoModel alunoModel)
         {
-            int NotaFinal = (int.Parse(alunoModel.Nota1) + int.Parse(alunoModel.Nota2)) / 2;
-            alunoModel.NotaFinal = NotaFinal.ToString();
+            float NotaFinal = (alunoModel.Nota1 + alunoModel.Nota2) / 2;
+            alunoModel.NotaFinal = NotaFinal;
+
+            if(alunoModel.NotaFinal >= 6)
+            {
+                alunoModel.Situacao = "Aprovado";
+            } 
+            else if (alunoModel.NotaFinal > 4 && alunoModel.NotaFinal < 6)
+            {
+                alunoModel.Situacao = "Recuperação";
+            } 
+            else
+            {
+                alunoModel.Situacao = "Reprovado";
+            }
 
             if (alunoModel != null)
             {
@@ -94,8 +107,22 @@ namespace projetoImpacta_ControleNotas.Controllers
                 return NotFound();
             }
 
-            int NotaFinal = (int.Parse(alunoModel.Nota1) + int.Parse(alunoModel.Nota2)) / 2;
-            alunoModel.NotaFinal = NotaFinal.ToString();
+            float NotaFinal = (alunoModel.Nota1 + alunoModel.Nota2) / 2;
+            alunoModel.NotaFinal = NotaFinal;
+
+            if (alunoModel.NotaFinal >= 6)
+            {
+                alunoModel.Situacao = "Aprovado";
+            }
+            else if (alunoModel.NotaFinal > 4 && alunoModel.NotaFinal < 6)
+            {
+                alunoModel.Situacao = "Recuperação";
+            }
+            else
+            {
+                alunoModel.Situacao = "Reprovado";
+            }
+
 
             if (alunoModel != null)
             {

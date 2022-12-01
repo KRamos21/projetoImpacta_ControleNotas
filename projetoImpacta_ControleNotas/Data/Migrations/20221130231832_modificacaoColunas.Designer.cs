@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using projetoImpacta_ControleNotas.Data;
 
@@ -11,9 +12,10 @@ using projetoImpacta_ControleNotas.Data;
 namespace projetoImpacta_ControleNotas.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221130231832_modificacaoColunas")]
+    partial class modificacaoColunas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -232,18 +234,17 @@ namespace projetoImpacta_ControleNotas.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Nome")
+                        .HasColumnType("int");
 
-                    b.Property<float>("Nota1")
-                        .HasColumnType("real");
+                    b.Property<int>("Nota1")
+                        .HasColumnType("int");
 
-                    b.Property<float>("Nota2")
-                        .HasColumnType("real");
+                    b.Property<int>("Nota2")
+                        .HasColumnType("int");
 
-                    b.Property<float>("NotaFinal")
-                        .HasColumnType("real");
+                    b.Property<int>("NotaFinal")
+                        .HasColumnType("int");
 
                     b.Property<string>("Situacao")
                         .IsRequired()
