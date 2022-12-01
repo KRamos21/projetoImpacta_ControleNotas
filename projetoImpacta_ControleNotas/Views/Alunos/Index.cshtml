@@ -46,9 +46,25 @@
             <td>
                 @Html.DisplayFor(modelItem => item.NotaFinal)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Situacao)
-            </td>
+
+            @if (item.Situacao == "Reprovado")
+            {
+                <td class="text-danger fw-bold">
+                    @Html.DisplayFor(modelItem => item.Situacao)
+                </td>
+            } 
+            else if (item.Situacao == "Aprovado") 
+            {
+                <td class="text-success fw-bold">
+                    @Html.DisplayFor(modelItem => item.Situacao)
+                </td>
+            } 
+            else
+            {
+                <td class="fw-bold">
+                    @Html.DisplayFor(modelItem => item.Situacao)
+                </td>
+            }
             
         @if (User.Identity.IsAuthenticated)
         {
