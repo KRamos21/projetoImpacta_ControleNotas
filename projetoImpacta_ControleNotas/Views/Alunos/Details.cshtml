@@ -1,10 +1,10 @@
 ﻿@model projetoImpacta_ControleNotas.Models.AlunoModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
 }
 
-<h1>Details</h1>
+<h1>@ViewData["Title"]</h1>
 
 <div>
     <h4>AlunoModel</h4>
@@ -34,9 +34,15 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.NotaFinal)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Situacao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Situacao)
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.ID">Editar</a> |
+    <a asp-action="Index">Voltar</a>
 </div>
