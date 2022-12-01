@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using projetoImpacta_ControleNotas.Data;
+using projetoImpacta_ControleNotas.Middleware;
 using projetoImpacta_ControleNotas.Models;
 
 namespace projetoImpacta_ControleNotas.Controllers
@@ -54,21 +55,8 @@ namespace projetoImpacta_ControleNotas.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Nome,Nota1,Nota2")] AlunoModel alunoModel)
         {
-            float NotaFinal = (alunoModel.Nota1 + alunoModel.Nota2) / 2;
-            alunoModel.NotaFinal = NotaFinal;
-
-            if(alunoModel.NotaFinal >= 6)
-            {
-                alunoModel.Situacao = "Aprovado";
-            } 
-            else if (alunoModel.NotaFinal > 4 && alunoModel.NotaFinal < 6)
-            {
-                alunoModel.Situacao = "Recuperação";
-            } 
-            else
-            {
-                alunoModel.Situacao = "Reprovado";
-            }
+            ManipularNotas manipularNotas = new ManipularNotas();
+            alunoModel =  manipularNotas.EstabelecerNotaESituacao(alunoModel);
 
             if (alunoModel != null)
             {
@@ -107,22 +95,8 @@ namespace projetoImpacta_ControleNotas.Controllers
                 return NotFound();
             }
 
-            float NotaFinal = (alunoModel.Nota1 + alunoModel.Nota2) / 2;
-            alunoModel.NotaFinal = NotaFinal;
-
-            if (alunoModel.NotaFinal >= 6)
-            {
-                alunoModel.Situacao = "Aprovado";
-            }
-            else if (alunoModel.NotaFinal > 4 && alunoModel.NotaFinal < 6)
-            {
-                alunoModel.Situacao = "Recuperação";
-            }
-            else
-            {
-                alunoModel.Situacao = "Reprovado";
-            }
-
+            ManipularNotas manipularNotas = new ManipularNotas();
+            alunoModel = manipularNotas.EstabelecerNotaESituacao(alunoModel);
 
             if (alunoModel != null)
             {
