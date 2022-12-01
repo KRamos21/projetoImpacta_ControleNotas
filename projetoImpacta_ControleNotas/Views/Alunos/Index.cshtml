@@ -6,9 +6,12 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
-    <a asp-controller="Alunos" asp-action="Create" class="btn btn-primary" role="button">Adicionar novo aluno</a>
-</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+        <a asp-controller="Alunos" asp-action="Create" class="btn btn-primary" role="button">Adicionar novo aluno</a>
+    </div>
+}
 
 <table class="table" id="myTable">
     <thead>
@@ -28,7 +31,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Situacao)
             </th>
-            <th></th>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <th></th>
+            }
         </tr>
     </thead>
     <tbody>
